@@ -19,7 +19,7 @@
 
 import QtQuick 2.0
 import QtQuick.Dialogs 1.1
-import MuseScore 1.0
+import MuseScore 3.0
 
 MuseScore {
       menuPath: "Plugins.Proof Reading.Check for parallel 5ths/8ves"
@@ -60,8 +60,8 @@ MuseScore {
             markColor(note1, note2, color);
             var myText = newElement(Element.STAFF_TEXT);
             myText.text = msg;
-            //myText.pos.x = 0;
-            myText.pos.y = 1;
+            //myText.pos.x = 0; What did this line do? Can it be removed?
+            myText.offsetY = 1;
             
             var cursor = curScore.newCursor();
             cursor.rewind(0);
@@ -200,7 +200,7 @@ MuseScore {
                                                       if (cint == pint) {
                                                             foundParallels++;
                                                             console.log ("P5:"+cint+", "+pint);
-                                                            markText(prevNote[track],prevNote[i],"open 5",
+                                                            markText(prevNote[track],prevNote[i],"parallel 5",
                                                                   colorFifth,track,prevTick[track]);
                                                             markColor(curNote[track],curNote[i],colorFifth);
                                                       } else if (dir1 == 1 && Math.abs(pint) < Math.abs(cint)) {
@@ -218,7 +218,7 @@ MuseScore {
                                                       if (cint == pint) {
                                                             foundParallels++;
                                                             console.log ("P8:"+cint+", "+pint+"Tracks "+track+","+i+" Tick="+segment.tick);
-                                                            markText(prevNote[track],prevNote[i],"open 8",
+                                                            markText(prevNote[track],prevNote[i],"parallel 8",
                                                                   colorOctave,track,prevTick[track]);
                                                             markColor(curNote[track],curNote[i],colorOctave);
                                                       } else if (dir1 == 1 && Math.abs(pint) < Math.abs(cint)) {
